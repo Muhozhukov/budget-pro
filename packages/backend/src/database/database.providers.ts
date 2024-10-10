@@ -1,20 +1,22 @@
-import { Sequelize } from 'sequelize-typescript';
+import { DataSource } from 'typeorm';
 
 export const databaseProviders = [
   {
-    provide: 'SEQUELIZE',
+    provide: 'DATA_SOURCE',
     useFactory: async () => {
-      const sequelize = new Sequelize({
-        dialect: 'postgres',
+      const dataSource = new DataSource({
+        type: 'postgres',
         host: 'localhost',
-        port: 5433,
+        port: 5432,
         username: 'postgres',
         password: 'postgres',
         database: 'postgres',
+        entities: [__dirname + '/../**/*.entity{.ts,.js}'],
+        synchronize: true,
+        logging: true,
       });
-      //   sequelize.addModels([Cat]);
-      await sequelize.sync();
-      return sequelize;
+
+      return dataSource.initialize();
     },
   },
 ];
