@@ -1,6 +1,6 @@
 import { Budget } from 'src/budget/entities/budget.entity';
 import { Category } from 'src/categories/entities/category.entity';
-import { User } from 'src/users/entities/user.entity';
+// import { User } from 'src/users/entities/user.entity';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
@@ -23,8 +23,8 @@ export class Transaction {
   @ManyToOne(() => Budget, (budget) => budget.transactions)
   budget: Budget; // Связь с бюджетом
 
-  @ManyToOne(() => User, (user) => user.transactions)
-  user: User; // Связь с пользователем
+  // @ManyToOne(() => User, (user) => user.transactions)
+  // user: User; // Связь с пользователем
 
   @Column({ nullable: true })
   description: string; // Описание транзакции

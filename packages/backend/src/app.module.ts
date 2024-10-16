@@ -1,18 +1,16 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-// import { CategoriesController } from './categories/categories.controller';
-// import { TransactionsController } from './transactions/transactions.controller';
 import { UsersModule } from './users/users.module';
-// import { TypeOrmModule } from '@nestjs/typeorm';
 import { CategoriesModule } from './categories/categories.module';
-// import { DatabaseModule } from './database/database.module';
 import { BudgetModule } from './budget/budget.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-// import { TransactionModule } from './transaction/transaction.module';
+import { TransactionModule } from './transactions/transaction.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
+    AuthModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
@@ -26,7 +24,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     CategoriesModule,
     UsersModule,
     BudgetModule,
-    // TransactionModule,
+    TransactionModule,
   ],
   controllers: [AppController],
   providers: [AppService],

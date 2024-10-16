@@ -10,33 +10,37 @@ import {
 import { BudgetService } from './budget.service';
 import { CreateBudgetDto } from './dto/create-budget.dto';
 import { UpdateBudgetDto } from './dto/update-budget.dto';
+import { Budget } from './entities/budget.entity';
 
 @Controller('budget')
 export class BudgetController {
   constructor(private readonly budgetService: BudgetService) {}
 
   @Post()
-  create(@Body() createBudgetDto: CreateBudgetDto) {
+  async create(@Body() createBudgetDto: CreateBudgetDto): Promise<Budget> {
     return this.budgetService.create(createBudgetDto);
   }
 
   @Get()
-  findAll() {
+  async findAll(): Promise<Budget[]> {
     return this.budgetService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  async findOne(@Param('id') id: string): Promise<Budget> {
     return this.budgetService.findOne(+id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateBudgetDto: UpdateBudgetDto) {
+  async update(
+    @Param('id') id: string,
+    @Body() updateBudgetDto: UpdateBudgetDto,
+  ): Promise<Budget> {
     return this.budgetService.update(+id, updateBudgetDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  async remove(@Param('id') id: string): Promise<Budget> {
     return this.budgetService.remove(+id);
   }
 }

@@ -2,7 +2,7 @@ import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 import { Category } from 'src/categories/entities/category.entity';
 import { Budget } from 'src/budget/entities/budget.entity';
-import { Transaction } from 'src/transactions/entities/transaction.entity';
+// import { Transaction } from 'src/transactions/entities/transaction.entity';
 
 @Entity()
 export class User {
@@ -24,6 +24,6 @@ export class User {
   @OneToMany(() => Category, (category) => category.user)
   categories: Category[];
 
-  @OneToMany(() => Transaction, (transaction) => transaction.user)
-  transactions: Transaction[];
+  // @OneToMany(() => Transaction, (transaction) => transaction.user)
+  // transactions: Transaction[];
 }
